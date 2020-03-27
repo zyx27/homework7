@@ -1,0 +1,85 @@
+// Variables!
+var color ="red";
+var radius = 15;
+var x = 0;
+var y = 0;
+//You will want to add more
+
+var canvas = document.querySelector("#canvas");
+var ctx = canvas.getContext("2d");
+
+
+
+//Listeners!!
+//Add a listener for loading the window
+window.addEventListener("load", resize);
+//Add a listener for the mouse movement
+canvas.addEventListener("mousemove", mouseDraw);
+
+function mouseDraw(e) {
+  x = e.offsetX; 
+  //offset - Returns the horizontal coordinate of the mouse pointer 
+  //relative to the position of the edge of the target element
+  y = e.offsetY;
+  draw();
+}
+
+clr.addEventListener("input", function(e) {
+  // console.log("picker");
+  // console.log(this);
+  // console.log(e);
+  // console.log(this.value);
+  color = this.value;
+
+})
+//Add a listener for the touch move
+//Add a listener for the keydown
+document.addEventListener("keydown", function(e) {
+  // console.log("in key");
+  // console.log(e.key);
+  _key = e.key;
+  // change color
+  if (_key == "r"){
+    color = "#FF0000";
+  }
+  else if (_key == "g") {
+    color = "#00FF00";
+  }
+  else if (_key == "b") {
+    color = "#0000FF";
+  }
+  else if (_key == "y") {
+    color = "#FFFF00";
+  }
+  // clear
+  if (_key == " ") {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  // up and down
+  if (_key == "ArrowUp") {
+    canvas.removeEventListener("mousemove", mouseDraw)
+  }
+  if (_key == "ArrowDown") {
+    canvas.addEventListener("mousemove", mouseDraw);
+  }
+  // draw();
+})
+
+// Functions!
+function resize() {
+  // console.log("resize");
+  // console.log(screen.width);
+  // console.log(window.innerWidth);
+  // console.log(canvas.width);
+  canvas.width = 0.75 * window.innerWidth;
+  canvas.height = 0.75 * window.innerHeight;
+  // console.log(canvas.width);
+}
+function draw() {
+  // console.log("start draw()")
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.arc(x, y, 15, 0, 2*Math.PI);
+  ctx.fill();
+
+}
