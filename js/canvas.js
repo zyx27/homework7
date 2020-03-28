@@ -8,7 +8,7 @@ var canvasBorder = 5;
 var canvas = document.querySelector("#canvas");
 var ctx = canvas.getContext("2d");
 
-document.querySelector("h1").innerHTML = "testing touchmove, add preventDefault to touchmove, change to pageX";
+// document.querySelector("h1").innerHTML = "testing touchmove, add preventDefault to touchmove, change to pageX";
 
 
 //Listeners!!
@@ -29,10 +29,7 @@ clr.addEventListener("input", function(e) {
 })
 //Add a listener for the touch move
 canvas.addEventListener("touchmove", touchDraw);
-// canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
-// canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
-// canvas.addEventListener("touchend",    function(event) {event.preventDefault()})
-// canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
+
 // disable scrolling when drawing
 //ref: http://bencentra.com/code/2014/12/05/html5-canvas-touch-events.html
 // document.body.addEventListener("touchmove", function(e) {
