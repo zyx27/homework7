@@ -8,7 +8,7 @@ var y = 0;
 var canvas = document.querySelector("#canvas");
 var ctx = canvas.getContext("2d");
 
-document.querySelector("h1").innerHTML = "testing touchmove, add preventDefault to touchmove";
+// document.querySelector("h1").innerHTML = "testing touchmove, add preventDefault to touchmove";
 
 
 //Listeners!!
@@ -28,19 +28,20 @@ clr.addEventListener("input", function(e) {
 
 })
 //Add a listener for the touch move
-canvas.addEventListener("touchmove", touchDraw, );
+canvas.addEventListener("touchmove", touchDraw);
 // canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
 // canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
 // canvas.addEventListener("touchend",    function(event) {event.preventDefault()})
 canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
 // disable scrolling when drawing
 //ref: http://bencentra.com/code/2014/12/05/html5-canvas-touch-events.html
-// document.body.addEventListener("touchmove", function(e) {
-//   document.querySelector("h1").innerHTML = "testing touchmove";
-//   if (e.target == canvas) {
-//     e.preventDefault();
-//   }
-// })
+document.body.addEventListener("touchmove", function(e) {
+  document.querySelector("h1").innerHTML = "testing touchmove";
+  if (e.target == canvas) {
+    console.log(e.target);
+    e.preventDefault();
+  }
+}, {passive: false})
 //Add a listener for the keydown
 document.addEventListener("keydown", function(e) {
   // console.log("in key");
@@ -85,8 +86,10 @@ function resize() {
 }
 
 function touchDraw(e) {
-  x = e.offsetX; 
-  y = e.offsetY;
+  console.log("in touchDraw");
+  // console.log("border:");
+  x = e.touches[0].clientX - 5; 
+  y = e.touches[0].clientY - 5;
   // e.preventDefault();
   e.preventDefault();
   document.body.style.touchAction = "none";
@@ -102,10 +105,12 @@ function mouseDraw(e) {
 }
 
 function draw() {
-  // console.log("start draw()")
+  console.log("start draw()")
   ctx.fillStyle = color;
   ctx.beginPath();
+  // console.log(x, y); //debugging for touchmove
   ctx.arc(x, y, 15, 0, 2*Math.PI);
+
   ctx.fill();
 
 }
