@@ -32,6 +32,7 @@ canvas.addEventListener("touchmove", mouseDraw);
 // disable scrolling when drawing
 //ref: http://bencentra.com/code/2014/12/05/html5-canvas-touch-events.html
 document.body.addEventListener("touchmove", function(e) {
+  document.querySelector("h1").innerHTML = "testing touchmove";
   if (e.target == canvas) {
     e.preventDefault();
   }
