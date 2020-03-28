@@ -28,6 +28,14 @@ clr.addEventListener("input", function(e) {
 })
 //Add a listener for the touch move
 canvas.addEventListener("touchmove", mouseDraw);
+
+// disable scrolling when drawing
+//ref: http://bencentra.com/code/2014/12/05/html5-canvas-touch-events.html
+document.body.addEventListener("touchmove", function(e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+  }
+})
 //Add a listener for the keydown
 document.addEventListener("keydown", function(e) {
   // console.log("in key");
@@ -77,6 +85,7 @@ function mouseDraw(e) {
   y = e.offsetY;
   draw();
 }
+
 function draw() {
   // console.log("start draw()")
   ctx.fillStyle = color;
