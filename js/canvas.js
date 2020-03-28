@@ -4,7 +4,7 @@ var radius = 15;
 var x = 0;
 var y = 0;
 //You will want to add more
-
+var canvasBorder = 5;
 var canvas = document.querySelector("#canvas");
 var ctx = canvas.getContext("2d");
 
@@ -88,8 +88,8 @@ function resize() {
 function touchDraw(e) {
   // console.log("in touchDraw");
   // console.log("border:");
-  x = e.touches[0].pageX - 5; 
-  y = e.touches[0].pageY - 5;
+  x = e.touches[0].pageX - canvasBorder; 
+  y = e.touches[0].pageY - canvasBorder;
   // e.preventDefault();
   e.preventDefault();
   document.body.style.touchAction = "none";
