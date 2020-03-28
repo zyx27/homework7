@@ -16,13 +16,7 @@ window.addEventListener("load", resize);
 //Add a listener for the mouse movement
 canvas.addEventListener("mousemove", mouseDraw);
 
-function mouseDraw(e) {
-  x = e.offsetX; 
-  //offset - Returns the horizontal coordinate of the mouse pointer 
-  //relative to the position of the edge of the target element
-  y = e.offsetY;
-  draw();
-}
+
 
 clr.addEventListener("input", function(e) {
   // console.log("picker");
@@ -33,6 +27,7 @@ clr.addEventListener("input", function(e) {
 
 })
 //Add a listener for the touch move
+canvas.addEventListener("touchmove", mouseDraw);
 //Add a listener for the keydown
 document.addEventListener("keydown", function(e) {
   // console.log("in key");
@@ -74,6 +69,13 @@ function resize() {
   canvas.width = 0.75 * window.innerWidth;
   canvas.height = 0.75 * window.innerHeight;
   // console.log(canvas.width);
+}
+function mouseDraw(e) {
+  x = e.offsetX; 
+  //offset - Returns the horizontal coordinate of the mouse pointer 
+  //relative to the position of the edge of the target element
+  y = e.offsetY;
+  draw();
 }
 function draw() {
   // console.log("start draw()")
