@@ -8,6 +8,7 @@ var y = 0;
 var canvas = document.querySelector("#canvas");
 var ctx = canvas.getContext("2d");
 
+document.querySelector("h1").innerHTML = "testing touchmove";
 
 
 //Listeners!!
@@ -27,16 +28,16 @@ clr.addEventListener("input", function(e) {
 
 })
 //Add a listener for the touch move
-canvas.addEventListener("touchmove", mouseDraw);
+canvas.addEventListener("touchmove", touchDraw);
 
 // disable scrolling when drawing
 //ref: http://bencentra.com/code/2014/12/05/html5-canvas-touch-events.html
-document.body.addEventListener("touchmove", function(e) {
-  document.querySelector("h1").innerHTML = "testing touchmove";
-  if (e.target == canvas) {
-    e.preventDefault();
-  }
-})
+// document.body.addEventListener("touchmove", function(e) {
+//   document.querySelector("h1").innerHTML = "testing touchmove";
+//   if (e.target == canvas) {
+//     e.preventDefault();
+//   }
+// })
 //Add a listener for the keydown
 document.addEventListener("keydown", function(e) {
   // console.log("in key");
@@ -79,6 +80,15 @@ function resize() {
   canvas.height = 0.75 * window.innerHeight;
   // console.log(canvas.width);
 }
+
+function touchDraw(e) {
+  x = e.offsetX; 
+  y = e.offsetY;
+  // e.preventDefault();
+  document.body.style.touchAction = "none";
+  draw();
+}
+
 function mouseDraw(e) {
   x = e.offsetX; 
   //offset - Returns the horizontal coordinate of the mouse pointer 
